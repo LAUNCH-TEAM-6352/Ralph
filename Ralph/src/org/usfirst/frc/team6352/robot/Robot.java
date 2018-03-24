@@ -29,36 +29,39 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot
 {
-	// The following deal with the power cube lift encoder:
+	// Instantiate the various robot subsystems:
 	public static final PowerCubeLiftEncoder powerCubeLiftEncoder = new PowerCubeLiftEncoder();
-	
-	// The following instantiates the drive train:
 	public static final DriveTrain driveTrain = new DriveTrain();
-	//public static final DriveTrain driveTrain = null;
-	
 	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
-	//public static final PowerCubeIntake powerCubeIntake = null;
-	
 	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
-	//public static final PowerCubeLift powerCubeLift = null;
 	
+	// Allows for access to operator interface components:
 	public static OI oi;
+	
+	// The command to run in autonomous mode:
+	private Command autonomousCommand = null;
 
+	/**
+	 * The following deal with the REV Digit Board:
+	 */
+	// The board itself:
 	private REVDigitBoard digitBoard;
 
+	// Keeps track on when to refresh the voltage display:
 	private int voltageRefreshCounter = 0;
 	private static final int voltageRefreshCount = 10;
 
+	// Keeps track on when to refresh the POT display:
 	private int potRefreshCounter = 0;
 	private static final int potRefreshCount = 10;
 
+	// REV digit board button states:
 	private boolean buttonA = false;
 	private boolean buttonB = false;
 
+	// User options selected via the REV digit board:
 	private static final String[] options = { "STAY", "SMPL", "LEFT", "RGHT" };
 	private int optionIndex = 0;
-
-	Command m_autonomousCommand = null;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -125,7 +128,8 @@ public class Robot extends TimedRobot
 		if (buttonA)
 		{
 			digitBoard.display(options[optionIndex]);
-		} else if (buttonB)
+		}
+		else if (buttonB)
 		{
 			if (++potRefreshCounter > potRefreshCount)
 			{
@@ -135,7 +139,8 @@ public class Robot extends TimedRobot
 			{
 				digitBoard.display(digitBoard.getPot());
 			}
-		} else
+		}
+		else
 		{
 			if (++voltageRefreshCounter > voltageRefreshCount)
 			{
@@ -169,39 +174,38 @@ public class Robot extends TimedRobot
 		 *   message: the message from the FMS indicating switch and scale colors
 		 */
 		String option = options[optionIndex].toUpperCase();
-		String message = DriverStation.getInstance().getGameSpecificMessage().toUpperCase();
+		String message = DriverStation.getInstance().getGameSpecificMessage();
+		message = ((message == null || message.isEmpty()) ? "xxx" : message).toUpperCase();
 		System.out.printf("   Option: %s\n", option);
 		System.out.printf("Game Data: %s\n", message);
 		System.out.flush();
 		
-		/**
-		 * Determine autonomous command based upon user selected option and game specific message
-		 */
+		// Determine autonomous command based upon user selected option and game specific message:
 		switch (option)
 		{
 			case "STAY":
 				// "Ralph. Stay."
-				// Primarily for testing. No reason to stay in competition.
-				m_autonomousCommand = null;
+				// Primarily for testing. There should be no reason to stay in competition.
+				autonomousCommand = null;
 				break;
 			
 			case "SMPL":
-				m_autonomousCommand = new DoAutonomousSimple();
+				autonomousCommand = new DoAutonomousSimple();
 				break;
 			
 			default:
 				// If first letter of user selected option matches our switch location,
 				// deposit power cube on switch; otherwise just do simple autonomous:
-				m_autonomousCommand = option.startsWith(message.substring(0, 1))
+				autonomousCommand = option.startsWith(message.substring(0, 1))
 					? new DoAutonomousSwitch()
 					: new DoAutonomousSimple();
 				break;
 		}
 
 		// Schedule the autonomous command:
-		if (m_autonomousCommand != null)
+		if (autonomousCommand != null)
 		{
-			m_autonomousCommand.start();
+			autonomousCommand.start();
 		}
 	}
 
@@ -221,9 +225,9 @@ public class Robot extends TimedRobot
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null)
+		if (autonomousCommand != null)
 		{
-			m_autonomousCommand.cancel();
+			autonomousCommand.cancel();
 		}
 	}
 
