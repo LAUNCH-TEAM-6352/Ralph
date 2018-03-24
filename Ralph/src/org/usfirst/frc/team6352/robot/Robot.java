@@ -14,6 +14,9 @@ import org.usfirst.frc.team6352.robot.subsystems.PowerCubeIntake;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLift;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLiftEncoder;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.UsbCameraInfo;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -29,6 +32,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot
 {
+	// Keeps track of USB cameras:
+	private UsbCamera usbCameras[];
+
 	// Instantiate the various robot subsystems:
 	public static final PowerCubeLiftEncoder powerCubeLiftEncoder = new PowerCubeLiftEncoder();
 	public static final DriveTrain driveTrain = new DriveTrain();
@@ -71,11 +77,14 @@ public class Robot extends TimedRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		//m_chooser.addDefault("Default Auto", new ControlNidecMotorWithGamepad());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		//SmartDashboard.putData("Auto mode", m_chooser);
 
 		digitBoard = new REVDigitBoard();
+		
+		// Set up USB cameras.
+		// Do not delete the following line!
+		CameraServer.getInstance();
+		initializeUsbCameras();
+
 	}
 
 	/**
@@ -246,5 +255,22 @@ public class Robot extends TimedRobot
 	@Override
 	public void testPeriodic()
 	{
+	}
+	
+	/**
+	 * Starts up USB cameras, starting capture on each one.
+	 */
+	private void initializeUsbCameras()
+	{
+		UsbCameraInfo infos[] = UsbCamera.enumerateUsbCameras();
+		usbCameras = new UsbCamera[infos.length];
+		for (int i = 0; i < usbCameras.length; i++)
+		{
+			usbCameras[i] = new UsbCamera("USB" + i, infos[i].path);
+			boolean setRes = usbCameras[i].setResolution(RobotMap.usbCameraImageWidth, RobotMap.usbCameraImageHeight);
+			boolean setFps = usbCameras[i].setFPS(RobotMap.usbCameraFrameRate);
+			System.out.println("Created USB camera " + i + ": " + usbCameras[i].getPath() + ", setRes=" + setRes + ", setFps=" + setFps);
+			CameraServer.getInstance().startAutomaticCapture(usbCameras[i]);
+		}
 	}
 }
