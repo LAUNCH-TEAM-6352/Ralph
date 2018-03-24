@@ -7,6 +7,18 @@
 
 package org.usfirst.frc.team6352.robot;
 
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftDown;
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftUp;
+import org.usfirst.frc.team6352.robot.commands.ResetLiftEncoder;
+import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
+
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +51,78 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public XboxController gameController = new XboxController(0);
+	
+	public Joystick joystickLeft = null;
+	public Joystick joystickRight = null;
+	
+	// Buttons:
+	
+	// Give meaningful names to the game controller buttons:
+	public final static int gameControllerButtonA = 1;
+	public final static int gameControllerButtonB = 2;
+	public final static int gameControllerButtonX = 3;
+	public final static int gameControllerButtonY = 4;
+	public final static int gameControllerButtonBumperLeft = 5;
+	public final static int gameControllerButtonBumperRight = 6;
+	public final static int gameControllerButtonBack = 7;
+	public final static int gameControllerButtonStart = 8;
+	public final static int gameControllerButtonStickLeft = 9;
+	public final static int gameControllerButtonStickRight = 10;
+	
+	Button powerCubeSuckButton = new JoystickButton(gameController, gameControllerButtonB);
+	Button powerCubeSpitButton = new JoystickButton(gameController, gameControllerButtonX);
+	
+	Button powerCubeLiftUpButton   = new JoystickButton(gameController, gameControllerButtonY);
+	Button powerCubeLiftDownButton = new JoystickButton(gameController, gameControllerButtonA);
+	
+	// SmartDashboard keys:
+	public final static String dashboardPowerCubeIntakeSuckSpeed = "Cube Suck Speed";
+	public final static String dashboardPowerCubeIntakeSpitSpeed = "Cube Spit Speed";
+
+	public final static String dashboardPowerCubeLiftUpSpeed = "Cube Up Speed";
+	public final static String dashboardPowerCubeLiftDownSpeed = "Cube Down Speed";
+
+	public final static String dashboardPowerCubeLiftUpFastSpeed = "Cube Up Fast Speed";
+	public final static String dashboardPowerCubeLiftUpSlowSpeed = "Cube Up Slow Speed";
+	public final static String dashboardPowerCubeLiftDownFastSpeed = "Cube Down Fast Speed";
+	public final static String dashboardPowerCubeLiftDownSlowSpeed = "Cube Down Slow Speed";
+
+	public final static String dashboardSimpleAutoDriveSpeed = "Simple Auto Speed";
+	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
+	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
+	
+	public final static String dashboardRumblePower = "Rumble Power";
+
+	// Constructor:
+	public OI()
+	{
+		// Bind buttons to commands:
+		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
+		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
+
+		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower));
+		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower));
+
+		// Put default values on SmartDashboard:
+		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
+		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
+		
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -1.0);
+		
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpFastSpeed, 1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSlowSpeed, 0.5);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownFastSpeed, -1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSlowSpeed, -0.5);
+		
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
+		
+		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
+		
+		SmartDashboard.putData(new ResetLiftEncoder());
+	}
 }
