@@ -36,7 +36,7 @@ public class PowerCubeIntake extends Subsystem
 		
 		// Determine if any motors need to be set inverted:
 //		rightMotor.setInverted(true);
-//		leftMotor.setInverted(true);
+		leftMotor.setInverted(true);
 	}
 
 	// Stop both motors
@@ -62,7 +62,7 @@ public class PowerCubeIntake extends Subsystem
 	
 	public void set(double speed)
 	{
-		leftMotor.set(speed);
+		leftMotor.set(speed * 0.80);
 		rightMotor.set(speed);
 	}
 	

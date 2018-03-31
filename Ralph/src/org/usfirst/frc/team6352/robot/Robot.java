@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -68,6 +69,9 @@ public class Robot extends TimedRobot
 	// User options selected via the REV digit board:
 	private static final String[] options = { "STAY", "SMPL", "LEFT", "RGHT" };
 	private int optionIndex = 0;
+	
+	// Keeps track of game controller back button:
+	private boolean backButton = false;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -84,7 +88,6 @@ public class Robot extends TimedRobot
 		// Do not delete the following line!
 		CameraServer.getInstance();
 		initializeUsbCameras();
-
 	}
 
 	/**
@@ -158,6 +161,23 @@ public class Robot extends TimedRobot
 			if (voltageRefreshCounter == 0)
 			{
 				digitBoard.display(RobotController.getBatteryVoltage());
+			}
+		}
+		
+		/**
+		 * The following code sets the camera frame rate when
+		 * the controller back button is pressed.
+		 */
+		if (oi.gameController.getBackButton() != backButton)
+		{
+			backButton = !backButton;
+			if (backButton)
+			{
+				int fps = (int) SmartDashboard.getNumber(OI.dashboardCameraFps, 20);
+				for (UsbCamera camera : usbCameras)
+				{
+					camera.setFPS(fps);
+				}
 			}
 		}
 	}
@@ -268,7 +288,7 @@ public class Robot extends TimedRobot
 		{
 			usbCameras[i] = new UsbCamera("USB" + i, infos[i].path);
 			boolean setRes = usbCameras[i].setResolution(RobotMap.usbCameraImageWidth, RobotMap.usbCameraImageHeight);
-			boolean setFps = usbCameras[i].setFPS(RobotMap.usbCameraFrameRate);
+			boolean setFps = usbCameras[i].setFPS((int) SmartDashboard.getNumber(OI.dashboardCameraFps, 20));
 			System.out.println("Created USB camera " + i + ": " + usbCameras[i].getPath() + ", setRes=" + setRes + ", setFps=" + setFps);
 			CameraServer.getInstance().startAutomaticCapture(usbCameras[i]);
 		}

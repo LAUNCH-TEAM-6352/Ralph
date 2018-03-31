@@ -67,6 +67,7 @@ public class PowerCubeLiftEncoder extends Subsystem
 	public void reset()
 	{
 		encoder.reset();
+		report();
 	}
 	
 }
