@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 public class RobotMap
 {
 	// The following indicates if we are running the competition robot:
-	public static final boolean isCompetitionRobot = false;
+	public static final boolean isCompetitionRobot = true;
 
 	// The PWM channels for the drive system on the practice robot:
 	public static final int leftDrivePwmChannel = 1;
@@ -72,7 +72,7 @@ public class RobotMap
 	//  320 x 240
 	//  176 x 144
 	//  160 x 120
-	public final static int usbCameraImageWidth = 176;
-	public final static int usbCameraImageHeight = 144;
+	public final static int usbCameraImageWidth = 320;
+	public final static int usbCameraImageHeight = 240;
 	public final static int usbCameraFrameRate = 30;
 }
