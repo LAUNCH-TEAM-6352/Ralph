@@ -3,6 +3,7 @@ package org.usfirst.frc.team6352.robot.commands;
 import org.usfirst.frc.team6352.robot.Robot;
 import org.usfirst.frc.team6352.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -14,9 +15,11 @@ public class MovePowerCubeLiftDown extends Command
 {
 	private String motorSpeedKey = null;
 	private String rumblePowerKey = null;
+	private String minDistanceKey = null;
 	
 	private double motorSpeed;
 	private double rumblePower;
+	private double minDistance;
 	
 	
 	public MovePowerCubeLiftDown()
@@ -24,18 +27,20 @@ public class MovePowerCubeLiftDown extends Command
 		requires(Robot.powerCubeLift);
 	}
 	
-	public MovePowerCubeLiftDown(String motorSpeedKey, String rumblePowerKey)
+	public MovePowerCubeLiftDown(String motorSpeedKey, String rumblePowerKey, String minDistanceKey)
 	{
 		this();
 		this.motorSpeedKey = motorSpeedKey;
 		this.rumblePowerKey = rumblePowerKey;
+		this.minDistanceKey = minDistanceKey;
 	}
 	
-	public MovePowerCubeLiftDown(double motorSpeed, double rumblePower)
+	public MovePowerCubeLiftDown(double motorSpeed, double rumblePower, double minDistance)
 	{
 		this();
 		this.motorSpeed = motorSpeed;
 		this.rumblePower = rumblePower;
+		this.minDistance = minDistance;
 	}
 	
 	// Called just before this Command runs the first time
@@ -50,13 +55,18 @@ public class MovePowerCubeLiftDown extends Command
 		{
 			rumblePower = SmartDashboard.getNumber(rumblePowerKey, 1.0);
 		}
+		if (minDistanceKey != null)
+		{
+			minDistance = SmartDashboard.getNumber(minDistanceKey, 12.0);
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
 		// This will not let us move the lift lower than the min distance:
-		if (Robot.powerCubeLiftEncoder.getDistance() > RobotMap.liftEncoderMinDistance)
+		if (Robot.powerCubeLiftEncoder.getDistance() > minDistance
+				|| Robot.oi.gameController.getBumper(Hand.kLeft))
 		{
 			Robot.powerCubeLift.set(motorSpeed);
 			Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);

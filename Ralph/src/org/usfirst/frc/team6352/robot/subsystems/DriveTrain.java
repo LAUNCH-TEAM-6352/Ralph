@@ -2,6 +2,7 @@ package org.usfirst.frc.team6352.robot.subsystems;
 
 import org.usfirst.frc.team6352.robot.RobotMap;
 import org.usfirst.frc.team6352.robot.commands.DriveWithGamepadController;
+import org.usfirst.frc.team6352.robot.commands.DriveWithJoysticks;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -59,7 +60,14 @@ public class DriveTrain extends Subsystem
 	public void initDefaultCommand()
 	{
 		// Set the default command for a subsystem here.
-		setDefaultCommand(new DriveWithGamepadController());
+		if (RobotMap.isCompetitionRobot)
+		{
+			setDefaultCommand(new DriveWithJoysticks());
+		}
+		else
+		{
+			setDefaultCommand(new DriveWithGamepadController());
+		}
 	}
 	
 	/**

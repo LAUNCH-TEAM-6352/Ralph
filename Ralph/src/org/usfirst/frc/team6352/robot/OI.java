@@ -84,14 +84,12 @@ public class OI {
 	public final static String dashboardPowerCubeLiftUpSpeed = "Cube Up Speed";
 	public final static String dashboardPowerCubeLiftDownSpeed = "Cube Down Speed";
 
-	public final static String dashboardPowerCubeLiftUpFastSpeed = "Cube Up Fast Speed";
-	public final static String dashboardPowerCubeLiftUpSlowSpeed = "Cube Up Slow Speed";
-	public final static String dashboardPowerCubeLiftDownFastSpeed = "Cube Down Fast Speed";
-	public final static String dashboardPowerCubeLiftDownSlowSpeed = "Cube Down Slow Speed";
-
 	public final static String dashboardSimpleAutoDriveSpeed = "Simple Auto Speed";
 	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
 	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
+	
+	public final static String dashboardLiftMaxDistance = "Lift Max Distance;";
+	public final static String dashboardLiftMinDistance = "Lift Min Distance;";
 	
 	public final static String dashboardRumblePower = "Rumble Power";
 	
@@ -101,31 +99,29 @@ public class OI {
 	public OI()
 	{
 		// Bind buttons to commands:
-		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
-		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
+		powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
+		powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
-		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower));
-		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower));
+		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower, dashboardLiftMaxDistance));
+		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower, dashboardLiftMinDistance));
 
 		// Put default values on SmartDashboard:
-		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.5);
+		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.8);
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
 		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -0.75);
 		
-		SmartDashboard.putNumber(dashboardPowerCubeLiftUpFastSpeed, 1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSlowSpeed, 0.5);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftDownFastSpeed, -1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSlowSpeed, -0.5);
-		
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
 		
+		SmartDashboard.putNumber(dashboardLiftMaxDistance,  11.5);
+		SmartDashboard.putNumber(dashboardLiftMinDistance,  0.0);
+		
 		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
 		
-		SmartDashboard.putNumber(dashboardCameraFps, 20);
+		SmartDashboard.putNumber(dashboardCameraFps, RobotMap.usbCameraFrameRate);
 		
 		SmartDashboard.putData(new ResetLiftEncoder());
 	}

@@ -45,8 +45,6 @@ public class RobotMap
 	public static final int liftEncoderChannelB = 8;
 	public static final int liftEncoderChannelX = 7;
 	public static final int liftEncoderPulsesPerRev = 2048;
-	public static final double liftEncoderMaxDistance = 5000.0;
-	public static final double liftEncoderMinDistance = -5000.0;
 	public static final boolean liftEncoderIsReversed = true;
 	
 	// The rumble type to use:
@@ -74,7 +72,7 @@ public class RobotMap
 	//  320 x 240
 	//  176 x 144
 	//  160 x 120
-	public final static int usbCameraImageWidth = 320;
-	public final static int usbCameraImageHeight = 240;
-	public final static int usbCameraFrameRate = 20;
+	public final static int usbCameraImageWidth = 176;
+	public final static int usbCameraImageHeight = 144;
+	public final static int usbCameraFrameRate = 30;
 }
