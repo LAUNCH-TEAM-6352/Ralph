@@ -62,7 +62,7 @@ public class PowerCubeIntake extends Subsystem
 	
 	public void set(double speed)
 	{
-		leftMotor.set(speed * 0.80);
+		leftMotor.set(speed);
 		rightMotor.set(speed);
 	}
 	
