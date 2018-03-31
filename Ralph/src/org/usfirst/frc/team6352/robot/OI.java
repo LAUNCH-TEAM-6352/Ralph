@@ -110,7 +110,7 @@ public class OI {
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -1.0);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -0.75);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpFastSpeed, 1.0);
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSlowSpeed, 0.5);

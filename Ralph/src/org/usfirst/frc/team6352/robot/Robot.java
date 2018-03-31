@@ -84,7 +84,6 @@ public class Robot extends TimedRobot
 		// Do not delete the following line!
 		CameraServer.getInstance();
 		initializeUsbCameras();
-
 	}
 
 	/**
