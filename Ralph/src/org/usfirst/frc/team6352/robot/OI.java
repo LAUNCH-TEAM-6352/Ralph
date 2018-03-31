@@ -99,8 +99,8 @@ public class OI {
 	public OI()
 	{
 		// Bind buttons to commands:
-		//powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
-		//powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
+		powerCubeSuckButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSuckSpeed));
+		powerCubeSpitButton.whileHeld(new SuckInOrSpitOutPowerCube(dashboardPowerCubeIntakeSpitSpeed));
 
 		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower));
 		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower));
