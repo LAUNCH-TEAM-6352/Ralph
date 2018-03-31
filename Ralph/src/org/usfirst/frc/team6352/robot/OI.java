@@ -54,8 +54,8 @@ public class OI {
 	
 	public XboxController gameController = new XboxController(0);
 	
-	public Joystick joystickLeft = null;
-	public Joystick joystickRight = null;
+	public Joystick joystickLeft = new Joystick(2);
+	public Joystick joystickRight = new Joystick(3);
 	
 	// Buttons:
 	
