@@ -74,7 +74,7 @@ public class RobotMap
 	//  320 x 240
 	//  176 x 144
 	//  160 x 120
-	public final static int usbCameraImageWidth = 352;
-	public final static int usbCameraImageHeight = 288;
+	public final static int usbCameraImageWidth = 320;
+	public final static int usbCameraImageHeight = 240;
 	public final static int usbCameraFrameRate = 20;
 }

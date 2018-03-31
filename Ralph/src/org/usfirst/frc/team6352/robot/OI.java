@@ -94,6 +94,8 @@ public class OI {
 	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
 	
 	public final static String dashboardRumblePower = "Rumble Power";
+	
+	public final static String dashboardCameraFps = "Camera FPS";
 
 	// Constructor:
 	public OI()
@@ -122,6 +124,8 @@ public class OI {
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.5);
 		
 		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
+		
+		SmartDashboard.putNumber(dashboardCameraFps, 20);
 		
 		SmartDashboard.putData(new ResetLiftEncoder());
 	}
