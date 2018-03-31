@@ -88,8 +88,9 @@ public class OI {
 	public final static String dashboardSimpleAutoDriveCurve = "Simple Auto Curve";
 	public final static String dashboardSimpleAutoDriveTimeout = "Simple Auto Timeout";
 	
-	public final static String dashboardLiftMaxDistance = "Lift Max Distance;";
-	public final static String dashboardLiftMinDistance = "Lift Min Distance;";
+	public final static String dashboardLiftMaxDistance = "Lift Max Distance";
+	public final static String dashboardLiftMinDistance = "Lift Min Distance";
+	public final static String dashboardLiftSwitchDistance = "Lift Switch Distance";
 	
 	public final static String dashboardRumblePower = "Rumble Power";
 	
@@ -118,6 +119,7 @@ public class OI {
 		
 		SmartDashboard.putNumber(dashboardLiftMaxDistance,  11.5);
 		SmartDashboard.putNumber(dashboardLiftMinDistance,  0.0);
+		SmartDashboard.putNumber(dashboardLiftSwitchDistance,  2.5);
 		
 		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
 		

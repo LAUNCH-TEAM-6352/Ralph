@@ -13,17 +13,36 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 public class PowerCubeLiftPid extends PIDSubsystem
 {
 	SpeedController motor;
+	
+	// PID parameters
+	private final static double kP = 0.75;
+	private final static double kI = 0.00;
+	private final static double kD = 0;
+	
+	// Minimum and maximum allowable set point positions:
+	private final static double minDistance = 0;
+	private final static double maxDistance = 12;
+	
+	// Minimum and maximum allowable speeds:
+	private final static double minSpeed = -0.75;
+	private final static double maxSpeed = 1.0;
+	
+	// Tolerance for reaching set point:
+	private final static double tolerance = 0.1;
+
 
 	// Initialize your subsystem here
 	public PowerCubeLiftPid()
 	{
-		// Use these to get going:
-		// setSetpoint() - Sets where the PID controller should move the system
-		// to
-		// enable() - Enables the PID controller.
-		super("Lift", 2.0, 0.0, 0.0);
+		// Set the parameters of the PID controller:
+		super(kP, kI, kD);		
+		
+		// Set ranges of PID controller:
+        setInputRange(minDistance, maxDistance);
+        setOutputRange(minSpeed, maxSpeed);
+        setAbsoluteTolerance(tolerance);
+        
 		motor = new Spark(RobotMap.powerCubeLiftPwmChannel);
-		stop();
 	}
 
 	// Stop the motor
@@ -39,15 +58,11 @@ public class PowerCubeLiftPid extends PIDSubsystem
 
 	protected double returnPIDInput()
 	{
-		// Return your input value for the PID loop
-		// e.g. a sensor, like a potentiometer:
-		// yourPot.getAverageVoltage() / kYourMaxVoltage;
 		return Robot.powerCubeLiftEncoder.getDistance();
 	}
 
 	protected void usePIDOutput(double output)
 	{
-		// Use output to drive your system, like a motor
-		// e.g. yourMotor.set(output);
+		motor.set(output);
 	}
 }

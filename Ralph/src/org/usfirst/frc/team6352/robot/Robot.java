@@ -13,6 +13,7 @@ import org.usfirst.frc.team6352.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeIntake;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLift;
 import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLiftEncoder;
+import org.usfirst.frc.team6352.robot.subsystems.PowerCubeLiftPid;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.UsbCameraInfo;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
 	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
+	public static final PowerCubeLiftPid powerCubeLiftPid = new PowerCubeLiftPid();
 	
 	// Allows for access to operator interface components:
 	public static OI oi;

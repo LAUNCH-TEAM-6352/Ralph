@@ -19,7 +19,6 @@ public class PowerCubeLift extends Subsystem
 	
 	public PowerCubeLift()
 	{
-		//motor = new NidecBrushless(RobotMap.nidecMotorPwmChannel, RobotMap.nidecMotorDioChannel);
 		motor = new Spark(RobotMap.powerCubeLiftPwmChannel);
 		stop();
 	}
