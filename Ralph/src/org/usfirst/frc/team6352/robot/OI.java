@@ -78,6 +78,8 @@ public class OI {
 	Button powerCubeLiftUpButton   = new JoystickButton(gameController, gameControllerButtonY);
 	Button powerCubeLiftDownButton = new JoystickButton(gameController, gameControllerButtonA);
 	
+	Button resetEncoderButton = new JoystickButton(gameController, gameControllerButtonStart);
+	
 	// SmartDashboard keys:
 	public final static String dashboardPowerCubeIntakeSuckSpeed = "Cube Suck Speed";
 	public final static String dashboardPowerCubeIntakeSpitSpeed = "Cube Spit Speed";
@@ -108,6 +110,8 @@ public class OI {
 
 		powerCubeLiftUpButton.whileHeld(new MovePowerCubeLiftUp(dashboardPowerCubeLiftUpSpeed, dashboardRumblePower, dashboardLiftMaxDistance));
 		powerCubeLiftDownButton.whileHeld(new MovePowerCubeLiftDown(dashboardPowerCubeLiftDownSpeed, dashboardRumblePower, dashboardLiftMinDistance));
+		
+		resetEncoderButton.whenPressed(new ResetLiftEncoder());
 
 		// Put default values on SmartDashboard:
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSuckSpeed, 0.8);
