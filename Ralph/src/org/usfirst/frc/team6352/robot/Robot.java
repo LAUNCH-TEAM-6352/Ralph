@@ -41,7 +41,7 @@ public class Robot extends TimedRobot
 	public static final PowerCubeLiftEncoder powerCubeLiftEncoder = new PowerCubeLiftEncoder();
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static final PowerCubeIntake powerCubeIntake = new PowerCubeIntake();
-	public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
+	//public static final PowerCubeLift powerCubeLift = new PowerCubeLift();
 	public static final PowerCubeLiftPid powerCubeLiftPid = new PowerCubeLiftPid();
 	
 	// Allows for access to operator interface components:

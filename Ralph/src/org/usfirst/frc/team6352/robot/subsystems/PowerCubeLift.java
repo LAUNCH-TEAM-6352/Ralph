@@ -29,18 +29,6 @@ public class PowerCubeLift extends Subsystem
 		motor.stopMotor();
 	}
 	
-	// Move lift up
-	public void up()
-	{
-		motor.set(1);
-	}
-	
-	// Move lift down
-	public void down()
-	{
-		motor.set(-1);
-	}
-	
 	public void set(double speed)
 	{
 		motor.set(speed);

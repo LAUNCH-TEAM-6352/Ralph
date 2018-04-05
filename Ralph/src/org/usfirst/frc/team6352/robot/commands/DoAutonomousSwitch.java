@@ -33,6 +33,12 @@ public class DoAutonomousSwitch extends CommandGroup
 				OI.dashboardSimpleAutoDriveSpeed,
 				OI.dashboardSimpleAutoDriveCurve,
 				OI.dashboardSimpleAutoDriveTimeout));
-		addSequential(new DepositPowerCubeOnSwitch());
+		
+		addSequential(new MovePowerCubeLiftToSwitch(
+				OI.dashboardLiftSwitchDistance));
+		
+		addSequential(new SpitOutPowerCube(
+				OI.dashboardPowerCubeIntakeSpitSpeed,
+				OI.dashboardSpitPowerCubeTimeout));
 	}
 }

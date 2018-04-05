@@ -8,6 +8,7 @@
 package org.usfirst.frc.team6352.robot;
 
 import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftDown;
+import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftToSwitch;
 import org.usfirst.frc.team6352.robot.commands.MovePowerCubeLiftUp;
 import org.usfirst.frc.team6352.robot.commands.ResetLiftEncoder;
 import org.usfirst.frc.team6352.robot.commands.SuckInOrSpitOutPowerCube;
@@ -92,6 +93,8 @@ public class OI {
 	public final static String dashboardLiftMinDistance = "Lift Min Distance";
 	public final static String dashboardLiftSwitchDistance = "Lift Switch Distance";
 	
+	public final static String dashboardSpitPowerCubeTimeout = "Spit Cube Timeout";
+	
 	public final static String dashboardRumblePower = "Rumble Power";
 	
 	public final static String dashboardCameraFps = "Camera FPS";
@@ -121,10 +124,13 @@ public class OI {
 		SmartDashboard.putNumber(dashboardLiftMinDistance,  0.0);
 		SmartDashboard.putNumber(dashboardLiftSwitchDistance,  2.5);
 		
+		SmartDashboard.putNumber(dashboardSpitPowerCubeTimeout, 5.0);
+		
 		SmartDashboard.putNumber(dashboardRumblePower, 0.5);
 		
 		SmartDashboard.putNumber(dashboardCameraFps, RobotMap.usbCameraFrameRate);
 		
 		SmartDashboard.putData(new ResetLiftEncoder());
+		SmartDashboard.putData(new MovePowerCubeLiftToSwitch(dashboardLiftSwitchDistance));
 	}
 }

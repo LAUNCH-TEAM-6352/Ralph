@@ -44,6 +44,11 @@ public class PowerCubeLiftPid extends PIDSubsystem
         
 		motor = new Spark(RobotMap.powerCubeLiftPwmChannel);
 	}
+	
+	public void set(double speed)
+	{
+		motor.set(speed);
+	}
 
 	// Stop the motor
 	public void stop()
@@ -63,6 +68,6 @@ public class PowerCubeLiftPid extends PIDSubsystem
 
 	protected void usePIDOutput(double output)
 	{
-		motor.set(output);
+		set(output);
 	}
 }
