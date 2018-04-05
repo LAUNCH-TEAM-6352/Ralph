@@ -47,6 +47,11 @@ public class DriveTrain extends Subsystem
 		// Determine if any motors need to be set inverted:
 		rightMotor.setInverted(true);
 		leftMotor.setInverted(true);
+		
+		if (centerMotor != null)
+		{
+			centerMotor.setInverted(true);
+		}
 				
 		drive = new DifferentialDrive(leftMotor, rightMotor);
 	}

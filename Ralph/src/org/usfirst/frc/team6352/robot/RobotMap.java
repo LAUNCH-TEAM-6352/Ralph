@@ -22,6 +22,7 @@ public class RobotMap
 
 	// The PWM channels for the drive system on the practice robot:
 	public static final int leftDrivePwmChannel = 1;
+	
 	public static final int rightDrivePwmChannel = 0;
 
 	// The CAN device ids for the drive system on the competition robot:
@@ -74,5 +75,5 @@ public class RobotMap
 	//  160 x 120
 	public final static int usbCameraImageWidth = 320;
 	public final static int usbCameraImageHeight = 240;
-	public final static int usbCameraFrameRate = 30;
+	public final static int usbCameraFrameRate = 20;
 }
