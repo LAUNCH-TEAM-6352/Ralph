@@ -15,8 +15,8 @@ public class PowerCubeLiftPid extends PIDSubsystem
 	SpeedController motor;
 	
 	// PID parameters
-	private final static double kP = 0.75;
-	private final static double kI = 0.00;
+	private final static double kP = 1.0;
+	private final static double kI = 0.50;
 	private final static double kD = 0;
 	
 	// Minimum and maximum allowable set point positions:

@@ -19,6 +19,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.UsbCameraInfo;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -74,6 +75,9 @@ public class Robot extends TimedRobot
 	
 	// Keeps track of game controller back button:
 	private boolean backButton = false;
+	
+	// Keeps track of controller right bumper:
+	private boolean rightBumper = false;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -185,6 +189,23 @@ public class Robot extends TimedRobot
 				}
 			}
 		}
+		
+		/**
+		 * An alternative way to change the autonomous select:
+		 */
+		if (oi.gameController.getBumper(Hand.kRight) != rightBumper)
+		{
+			rightBumper = !rightBumper;
+			if (rightBumper)
+			{
+				if (++optionIndex >= options.length)
+				{
+					optionIndex = 0;
+				}
+				SmartDashboard.putString("Autonomous", options[optionIndex]);
+			}
+		}
+
 	}
 
 	/**
