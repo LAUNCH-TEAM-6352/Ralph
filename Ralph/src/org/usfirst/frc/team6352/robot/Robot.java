@@ -90,6 +90,8 @@ public class Robot extends TimedRobot
 		// Do not delete the following line!
 		CameraServer.getInstance();
 		initializeUsbCameras();
+		
+		SmartDashboard.putString("Autonomous", options[optionIndex]);
 	}
 
 	/**
@@ -131,6 +133,7 @@ public class Robot extends TimedRobot
 				{
 					optionIndex = 0;
 				}
+				SmartDashboard.putString("Autonomous", options[optionIndex]);
 			}
 		}
 

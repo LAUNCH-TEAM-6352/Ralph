@@ -45,7 +45,7 @@ public class RobotMap
 	public static final int liftEncoderChannelA = 9;
 	public static final int liftEncoderChannelB = 8;
 	public static final int liftEncoderChannelX = 7;
-	public static final int liftEncoderPulsesPerRev = 2048;
+	public static final int liftEncoderPulsesPerRev = 512;
 	public static final boolean liftEncoderIsReversed = true;
 	
 	// The rumble type to use:
