@@ -124,7 +124,7 @@ public class OI {
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.65);
 		
-		SmartDashboard.putNumber(dashboardLiftMaxDistance,  10.5);
+		SmartDashboard.putNumber(dashboardLiftMaxDistance,  11.1);
 		SmartDashboard.putNumber(dashboardLiftMinDistance,  0.0);
 		SmartDashboard.putNumber(dashboardLiftSwitchDistance,  3.5);
 		
