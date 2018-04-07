@@ -118,15 +118,15 @@ public class OI {
 		SmartDashboard.putNumber(dashboardPowerCubeIntakeSpitSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardPowerCubeLiftUpSpeed, 1.0);
-		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -0.75);
+		SmartDashboard.putNumber(dashboardPowerCubeLiftDownSpeed, -1.0);
 		
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveSpeed, -0.5);
 		SmartDashboard.putNumber(dashboardSimpleAutoDriveCurve, 0.0);
-		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.65);
+		SmartDashboard.putNumber(dashboardSimpleAutoDriveTimeout, 1.85);
 		
 		SmartDashboard.putNumber(dashboardLiftMaxDistance,  11.1);
 		SmartDashboard.putNumber(dashboardLiftMinDistance,  0.0);
-		SmartDashboard.putNumber(dashboardLiftSwitchDistance,  3.5);
+		SmartDashboard.putNumber(dashboardLiftSwitchDistance,  3.8);
 		
 		SmartDashboard.putNumber(dashboardSpitPowerCubeTimeout, 2.0);
 		
