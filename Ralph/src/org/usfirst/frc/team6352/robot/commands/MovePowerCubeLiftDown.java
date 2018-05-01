@@ -24,7 +24,7 @@ public class MovePowerCubeLiftDown extends Command
 	
 	public MovePowerCubeLiftDown()
 	{
-		requires(Robot.powerCubeLift);
+		requires(Robot.powerCubeLiftPid);
 	}
 	
 	public MovePowerCubeLiftDown(String motorSpeedKey, String rumblePowerKey, String minDistanceKey)
@@ -68,12 +68,12 @@ public class MovePowerCubeLiftDown extends Command
 		if (Robot.powerCubeLiftEncoder.getDistance() > minDistance
 				|| Robot.oi.gameController.getBumper(Hand.kLeft))
 		{
-			Robot.powerCubeLift.set(motorSpeed);
+			Robot.powerCubeLiftPid.set(motorSpeed);
 			Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
 		}
 		else
 		{
-			Robot.powerCubeLift.stop();
+			Robot.powerCubeLiftPid.stop();
 			Robot.oi.gameController.setRumble(RobotMap.rumbleType, rumblePower);
 		}
 	}
@@ -87,7 +87,7 @@ public class MovePowerCubeLiftDown extends Command
 	// Called once after isFinished returns true
 	protected void end()
 	{
-		Robot.powerCubeLift.stop();
+		Robot.powerCubeLiftPid.stop();
 		Robot.oi.gameController.setRumble(RobotMap.rumbleType, 0);
 	}
 

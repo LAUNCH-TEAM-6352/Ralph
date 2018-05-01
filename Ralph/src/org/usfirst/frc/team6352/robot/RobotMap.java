@@ -22,6 +22,7 @@ public class RobotMap
 
 	// The PWM channels for the drive system on the practice robot:
 	public static final int leftDrivePwmChannel = 1;
+	
 	public static final int rightDrivePwmChannel = 0;
 
 	// The CAN device ids for the drive system on the competition robot:
@@ -44,7 +45,7 @@ public class RobotMap
 	public static final int liftEncoderChannelA = 9;
 	public static final int liftEncoderChannelB = 8;
 	public static final int liftEncoderChannelX = 7;
-	public static final int liftEncoderPulsesPerRev = 2048;
+	public static final int liftEncoderPulsesPerRev = 512;
 	public static final boolean liftEncoderIsReversed = true;
 	
 	// The rumble type to use:
@@ -74,5 +75,5 @@ public class RobotMap
 	//  160 x 120
 	public final static int usbCameraImageWidth = 320;
 	public final static int usbCameraImageHeight = 240;
-	public final static int usbCameraFrameRate = 30;
+	public final static int usbCameraFrameRate = 20;
 }
